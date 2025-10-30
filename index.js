@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose")
-const PORT = process.env.PORT||3000;
+
 const StudentRout = require("./Router/Student.Route")
+require("dotenv").config();
+const DbString = process.env.MONGO_URI;
+const PORT = process.env.PORT || 3000;
 
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-const DbString = "mongodb+srv://abdulr3hman777_db_user:abdul123@studentcluster.svkh4ix.mongodb.net/?appName=StudentCluster"
+
 mongoose.connect(DbString)
 .then(() => console.log("MongoDB connected ✅"))
 .catch(err => console.log("MongoDB connection error:", err));
